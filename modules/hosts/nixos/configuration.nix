@@ -8,6 +8,7 @@
         self.nixosModules.homeManager
         self.nixosModules.nvidia
         self.nixosModules.cloudflareDns
+        self.nixosModules.cosmic
       ];
 
     # Bootloader.
@@ -68,21 +69,11 @@
     # Enable the X11 windowing system.
     # You can disable this if you're only using the Wayland session.
     #services.xserver.enable = true;
+    
+    # Ly DM
+    services.displayManager.ly.enable = true;
 
-    # Enable SDDM.
-    services.displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-    };
-
-    # Enable the KDE Plasma Desktop Environment.
-    #services.displayManager.plasma-login-manager.enable = true;
-    #services.desktopManager.plasma6.enable = true;
-
-    # COSMIC Desktop Environment.
-    services.desktopManager.cosmic.enable = true;
-
-    # QT
+    # Qt
     qt = {
       enable = true;
       platformTheme = "gnome";
@@ -134,10 +125,10 @@
     # Mount drive
     fileSystems."/mnt/external" = {
       device = "/dev/disk/by-uuid/61a25df3-1794-4859-a2de-ad5a86247f67";
-      fsType = "btrfs"; # Replace with your actual filesystem type (e.g., vfat, ntfs)
+      fsType = "btrfs"; 
       options = [
-        "nofail" # Ensures the system boots even if the drive is unplugged
-        "users" # Allows normal users to mount and unmount the drive
+        "nofail" 
+        "users" 
         "rw"
         "exec"
       ];
@@ -215,13 +206,11 @@
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+     vim 
      wget
      curl
-     flatpak
      p7zip
      unrar-free
-     #neovim
      steam-run
      comic-neue
      mangohud
@@ -254,12 +243,6 @@
     # Or disable the firewall altogether.
     # networking.firewall.enable = false;
 
-    # This value determines the NixOS release from which the default
-    # settings for stateful data, like file locations and database versions
-    # on your system were taken. It‘s perfectly fine and recommended to leave
-    # this value at the release version of the first install of this system.
-    # Before changing this value read the documentation for this option
-    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-    system.stateVersion = "26.05"; # Did you read the comment?
+    system.stateVersion = "26.05"; 
   };
 }
