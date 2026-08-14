@@ -118,7 +118,6 @@
       pkgs.linuxwave
       pkgs.kdePackages.kcalc
       pkgs.vesktop
-      pkgs.ruby
     ];
 
     home.stateVersion = "26.11";

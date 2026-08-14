@@ -7,14 +7,14 @@
       theme = "Elegant";
       extraPackages = [
         (pkgs.elegant-sddm.override {
-          themeConfig.General.background = "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray}";
+          themeConfig.General.background = "${pkgs.nixos-artwork.wallpapers.simple-dark-gray-bottom}";
         })
       ];
     };
 
     environment.systemPackages = [
       (pkgs.elegant-sddm.override {
-        themeConfig.General.background = "${pkgs.nixos-artwork.wallpapers.nineish-dark-gray}";
+        themeConfig.General.background = "${pkgs.nixos-artwork.wallpapers.simple-dark-gray-bottom}";
       })
     ];
   };

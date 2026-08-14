@@ -6,8 +6,8 @@
         self.nixosModules.nixosHardware
         self.nixosModules.nixvim
         self.nixosModules.homeManager
-        self.nixosModules.customSddm
         self.nixosModules.nvidia
+        self.nixosModules.cloudflareDns
       ];
 
     # Bootloader.
@@ -28,38 +28,6 @@
     # Enable networking
     networking.networkmanager.enable = true;
 
-    # Encrypted DNS
-    networking = {
-      nameservers = [ "127.0.0.1" "::1" ];
-      networkmanager.dns = "none";
-    };
-    services.resolved.enable = false;
-
-    services.dnscrypt-proxy = {
-      enable = true;
-      settings = {
-        sources.public-resolvers = {
-          urls = [
-      "https://raw.githubusercontent.com/DNSCrypt/dnscrypt-resolvers/master/v3/public-resolvers.md"
-      "https://download.dnscrypt.info/resolvers-list/v3/public-resolvers.md"
-    ];
-    minisign_key = "RWQf6LRCGA9i53mlYecO4IzT51TGPpvWucNSCh1CBM0QTaLn73Y7GFO3";
-    cache_file = "/var/lib/dnscrypt-proxy/public-resolvers.md";
-        };
-
-        ipv6_servers = false;
-        block_ipv6 = true;
-
-        require_dnssec = true;
-        require_nolog = true;
-        require_nofilter = true;
-
-        server_names = [ "quad9-dnscrypt-ip4-nofilter-pri" "quad9-dnscrypt-ip6-nofilter-pri" ];
-      };
-    };
-
-    systemd.services.dnscrypt-proxy.serviceConfig.StateDirectory = "dnscrypt-proxy";
-
     # Wireguard
     /*networking.wg-quick.interfaces.wg0 = {
       address = [
@@ -78,7 +46,6 @@
         }
       ];
     };*/
-
 
     # Set your time zone.
     time.timeZone = "Europe/Kyiv";
@@ -101,6 +68,12 @@
     # Enable the X11 windowing system.
     # You can disable this if you're only using the Wayland session.
     #services.xserver.enable = true;
+
+    # Enable SDDM.
+    services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
 
     # Enable the KDE Plasma Desktop Environment.
     #services.displayManager.plasma-login-manager.enable = true;
@@ -256,6 +229,8 @@
      nerd-fonts.droid-sans-mono
      qpwgraph
      kdePackages.partitionmanager
+     python3
+     emote
     ];
 
     # Some programs need SUID wrappers, can be configured further or are
