@@ -1,9 +1,9 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports = [
+  /*imports = [
     inputs.plasma-manager.homeModules.plasma-manager
-  ];
+  ];*/
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -11,7 +11,7 @@
   home.homeDirectory = "/home/andrew";
 
   # Plasma customization
-  programs.plasma = {
+  /*programs.plasma = {
     enable = true;
     workspace.wallpaper = "${pkgs.nixos-artwork.wallpapers.catppuccin-mocha.kdeFilePath}";
 
@@ -42,12 +42,12 @@
 
       };
     };
-  };
+  };*/
 
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    autosuggestion.enable = true;
+    #autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
     # Configure Oh My Zsh
@@ -133,6 +133,7 @@
     pkgs.krita
     pkgs.yt-dlp
     pkgs.kdePackages.kdenlive
+    #pkgs.tor-browser
     #pkgs.flameshot
     #pkgs.bottles
     pkgs.fastfetch

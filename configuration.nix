@@ -126,43 +126,26 @@ in
     #extraPackages = [ pkgs.sddm-astronaut ];
   };
   #services.displayManager.plasma-login-manager.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  #services.desktopManager.plasma6.enable = true;
 
-  # Niri
-  /*programs.niri = {
+  # COSMIC Desktop Environment.
+  services.desktopManager.cosmic.enable = true;
+
+  # QT
+  qt = {
     enable = true;
-    settings = {
-      spawn-at-startup = [
-        "noctalia"
-      ];
-      outputs."DP-1".mode = "1920x1080@143.998";
-      
-      binds = {
-        "Mod+T".action.spawn = [ "foot" ];
-       };
+    platformTheme = "gnome";
+    style = "adwaita-dark";
+  };
+
+  # GTK
+  /*gtk = {
+    #enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
     };
   };*/
-
-  /*programs.noctalia = {
-    enable = true;
-    recommendedServices.enable = true;
-  };*/
-
-  # Aero plasma theme
-  /*services.displayManager.defaultSession = "aerothemeplasma";
-  boot.plymouth.enable  = false;
-  programs.aeroshell = {
-    enable = true;
-    fonts.segoe.enable = false;
-    polkit.enable = true;
-    sessions.x11.enable = false;
-    aerothemeplasma = {
-      enable = true;
-      sddm.enable = true;
-      plymouth.enable = false;
-    };
-  };*/
-
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -231,19 +214,18 @@ in
   # NVIDIA
   hardware.graphics = {
     enable = true;
-    /*extraPackages = with pkgs; [
-      mesa
-      #mesa.drivers
-    ];*/
+    #enable32Bit = true;
+    #extraPackages = with pkgs; [
+    #  mesa
+    #  #mesa.drivers
+    #];
   };
 
   #boot.kernelModules = [ "nouveau" ];
   #boot.blacklistedKernelModules = [ "nvidia" "nvidia_uvm" "nvidia_drm" "nvidia_modeset" ];
-  #services.xserver.videoDrivers = [ "nouveau" ];
-
-
+  
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = true;  # see the note above
+  hardware.nvidia.open = true;
 
   # Flatpak
   services.flatpak.enable = true;
@@ -386,7 +368,7 @@ in
    steam-run
    comic-neue
    mangohud
-   pkgs.xwayland-satellite
+   loupe
    nerd-fonts.droid-sans-mono
    qpwgraph
    kdePackages.partitionmanager

@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-26-05.url = "github:nixos/nixpkgs/nixos-26.05";
+    #nixpkgs-26-05.url = "github:nixos/nixpkgs/nixos-26.05";
     
     /*aerothemeplasma-nix = {
       url = "github:nyakase/aerothemeplasma-nix";
@@ -28,14 +28,14 @@
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };*/
-    plasma-manager = {
+    /*plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
-    };
+    };*/
   };
 
-  outputs = { self, nixpkgs, nixpkgs-26-05, home-manager, plasma-manager, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixvim, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -57,7 +57,7 @@
               backupFileExtension = "bak";
             };
 
-	    nix.registry.nixpkgs-26-05.flake = inputs.nixpkgs-26-05;
+	    #nix.registry.nixpkgs-26-05.flake = inputs.nixpkgs-26-05; 
           }
         ];
       };
