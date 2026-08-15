@@ -6,7 +6,7 @@
         self.nixosModules.nixosHardware
         self.nixosModules.nixvim
         self.nixosModules.homeManager
-        self.nixosModules.nvidia
+        self.nixosModules.nouveau
         self.nixosModules.cloudflareDns
         self.nixosModules.cosmic
       ];
