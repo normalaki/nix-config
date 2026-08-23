@@ -8,7 +8,8 @@
         self.nixosModules.homeManager
         self.nixosModules.nouveau
         self.nixosModules.cloudflareDns
-        self.nixosModules.cosmic
+        self.nixosModules.desktopPrograms
+        self.nixosModules.sway
       ];
 
     # Bootloader.
@@ -148,22 +149,16 @@
     services.flatpak.enable = true;
 
     # Zerotier
-    /*services.zerotierone = {
+    services.zerotierone = {
       enable = true;
       joinNetworks = [ "b103a835d2542825" ];
-    };*/
+    };
 
     # Install zsh
     programs.zsh.enable = true;
 
     # KDE Connect
     programs.kdeconnect.enable = true;
-
-    # Ollama
-    services.ollama = {
-      enable = true;
-      package = pkgs.ollama-vulkan;
-    };
 
     # Install openrgb.
     services.hardware.openrgb = {
@@ -184,11 +179,13 @@
         SearchEngines.PreventInstalls = true;
       };
     };
+    
+    security.polkit.enable = true;
 
     # Foot
     programs.foot = {
       enable = true;
-      settings.main.font = "DroidSansM Nerd Font Mono:size=12";
+      settings.main.font = "Iosevka:size=12";
       settings.main.initial-window-size-chars = "120x40";
       settings.colors-dark.background = "1b1e20";
     };
@@ -205,21 +202,21 @@
 
     # List packages installed in system profile. To search, run:
     # $ nix search wget
-    environment.systemPackages = with pkgs; [
+    /*environment.systemPackages = with pkgs; [
      vim 
      wget
      curl
-     p7zip
-     unrar-free
-     steam-run
-     comic-neue
-     mangohud
-     loupe
-     nerd-fonts.droid-sans-mono
-     qpwgraph
-     kdePackages.partitionmanager
-     python3
-     emote
+    ];*/
+
+    # Fonts
+    fonts.packages = with pkgs; [
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.noto
+      nerd-fonts.hack
+      nerd-fonts.ubuntu
+      iosevka
+      comic-neue
     ];
 
     # Some programs need SUID wrappers, can be configured further or are

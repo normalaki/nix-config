@@ -1,15 +1,18 @@
 { self, inputs, ... }: {
-  flake.homeModules.andrewProfile = { config, pkgs, inputs, ... }: {
-
+  flake.homeModules.andrewProfile = { config, pkgs, inputs, lib, ... }: {
+    imports = [
+      self.homeManager.swayCustom
+    ];
+    
     home.username = "andrew";
     home.homeDirectory = "/home/andrew";
 
     # Plasma customization
     /*programs.plasma = {
       enable = true;
-      workspace.wallpaper = "${pkgs.nixos-artwork.wallpapers.catppuccin-mocha.kdeFilePath}";
+      workspace.wallpaper = "${pkgs.nixos-artwork.wallpapers.gear.kdeFilePath}";
 
-      kscreenlocker.appearance.wallpaper = "${pkgs.nixos-artwork.wallpapers.catppuccin-mocha.kdeFilePath}";
+      kscreenlocker.appearance.wallpaper = "${pkgs.nixos-artwork.wallpapers.gear.kdeFilePath}";
 
       powerdevil = {
         AC = {
@@ -97,27 +100,12 @@
     home.packages = [
       pkgs.fortune
       pkgs.cowsay
-      pkgs.btop
-      pkgs.haruna
-      pkgs.krita
-      pkgs.yt-dlp
-      pkgs.kdePackages.kdenlive
-      pkgs.fastfetch
-      #pkgs.qbittorrent
-      pkgs.kdePackages.ktorrent
-      pkgs.git
-      #pkgs.easyeffects
-      pkgs.lua
       pkgs.love
       pkgs.figlet
-      pkgs.ffmpeg
       pkgs.blender
       pkgs.heroic
-      pkgs.kdePackages.k3b
-      pkgs.tenacity
-      pkgs.linuxwave
-      pkgs.kdePackages.kcalc
       pkgs.vesktop
+      pkgs.prismlauncher
     ];
 
     home.stateVersion = "26.11";

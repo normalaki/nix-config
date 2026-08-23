@@ -14,7 +14,9 @@
       url = "github:nix-community/nixvim";
     };
 
-    #wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+    nvf.url = "github:notashelf/nvf";
+
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
