@@ -6,10 +6,9 @@
         self.nixosModules.nixosHardware
         self.nixosModules.nixvim
         self.nixosModules.homeManager
-        self.nixosModules.nouveau
+        self.nixosModules.nvidia
         self.nixosModules.cloudflareDns
         self.nixosModules.desktopPrograms
-        self.nixosModules.sway
       ];
 
     # Bootloader.
@@ -73,6 +72,8 @@
     
     # Ly DM
     services.displayManager.ly.enable = true;
+
+    services.desktopManager.plasma6.enable = true;
 
     # Qt
     qt = {
