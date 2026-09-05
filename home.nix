@@ -14,9 +14,6 @@
   programs.plasma = {
     enable = true;
     workspace = {
-      colorScheme = "BreezeDark";
-      lookAndFeel = "org.kde.breezedark.desktop";
-      iconTheme = "Papirus-Dark";
       wallpaper = "${pkgs.nixos-artwork.wallpapers.gear.kdeFilePath}";
     };
     kwin = {
@@ -26,7 +23,7 @@
     };
     shortcuts = {
       "org.kde.konsole.desktop"."_launch" = "";
-      "foot.desktop"."_launchh" = "Ctrl+Alt+T";
+      "foot.desktop"."_launch" = "Ctrl+Alt+T";
     };
     kscreenlocker.appearance.wallpaper = "${pkgs.nixos-artwork.wallpapers.gear.kdeFilePath}";
     powerdevil = {
@@ -136,7 +133,7 @@
     kdePackages.k3b
     linuxwave
     vesktop
-    renpy
+    drawy
   ];
 
   # This value determines the Home Manager release that your

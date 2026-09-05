@@ -371,14 +371,8 @@ in
     tenacity
     lua
     tree
-    bat
-    tealdeer
     ruby
-    papirus-icon-theme
-  ];
-
-  services.udev.packages = with pkgs; [
-    gnome-settings-daemon
+    devenv
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
