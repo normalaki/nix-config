@@ -7,8 +7,8 @@
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "andrew";
-  home.homeDirectory = "/home/andrew";
+  home.username = "user";
+  home.homeDirectory = "/home/user";
 
   # Plasma customization
   programs.plasma = {

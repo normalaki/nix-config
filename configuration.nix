@@ -165,10 +165,10 @@ in
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users."andrew" = {
+  users.users."user" = {
     isNormalUser = true;
     hashedPassword = "$6$dPYL8UQ5XHgn6n9c$6X4kFs5BOMmoiVXRCYLLq8SCUgJBBTEGgJngMigzV/d3md8YiTGq4sGzNTkqbVqO6BQCIc78R40hTFJiB4TNV.";
-    description = "Andrew";
+    description = "User";
     extraGroups = [
       "networkmanager"
       "wheel"
