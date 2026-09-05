@@ -211,17 +211,17 @@ in
   hardware.graphics = {
     enable = true;
     #enable32Bit = true;
-    extraPackages = with pkgs; [
-      mesa
-      #mesa.drivers
-    ];
+    #extraPackages = with pkgs; [
+    #  mesa
+    #  #mesa.drivers
+    #];
   };
 
-  boot.kernelModules = [ "nouveau" ];
-  boot.blacklistedKernelModules = [ "nvidia" "nvidia_uvm" "nvidia_drm" "nvidia_modeset" ];
+  #boot.kernelModules = [ "nouveau" ];
+  #boot.blacklistedKernelModules = [ "nvidia" "nvidia_uvm" "nvidia_drm" "nvidia_modeset" ];
 
-  #services.xserver.videoDrivers = [ "nvidia" ];
-  #hardware.nvidia.open = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;
 
   # Flatpak
   services.flatpak.enable = true;
