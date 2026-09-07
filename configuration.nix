@@ -95,10 +95,10 @@ in
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  #services.xserver.enable = true;
+  services.xserver.enable = true;
 
   # GreetD
-  services.greetd.enable = true;
+  /*services.greetd.enable = true;
   services.displayManager.regreet = {
     enable = true;
     settings = {
@@ -107,13 +107,14 @@ in
         fit = "Cover";
       };
     };
-  };
+  };*/
 
   # Enable the KDE Plasma Desktop Environment.
-  #services.displayManager.plasma-login-manager.enable = true;
+  services.displayManager.plasma-login-manager.enable = true;
   services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     elisa
+    plasma-browser-integration
   ];
 
   # Enable the GNOME Desktop Environment.

@@ -43,7 +43,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = { inherit inputs; };
-              users.andrew = ./home.nix;
+              users.user = ./home.nix;
               backupFileExtension = "bak";
             };
 
