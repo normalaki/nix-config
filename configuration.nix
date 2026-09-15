@@ -1,4 +1,4 @@
-# Edit this configuration file to define what should be installed on
+#      #xfce.wayland = true; Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { config, pkgs, inputs, ... }:
@@ -110,12 +110,21 @@ in
   };*/
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.plasma-login-manager.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  #services.displayManager.plasma-login-manager.enable = true;
+  /*services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     elisa
     plasma-browser-integration
-  ];
+  ];*/
+
+  # Enable the XFCE Desktop Environment
+  services.xserver = {
+    displayManager.lightdm.enable = true;
+    desktopManager = {
+      xfce.enable = true;
+    };
+  };
+  services.power-profiles-daemon.enable = true;
 
   # Enable the GNOME Desktop Environment.
   /*services.displayManager.gdm.enable = true;
@@ -136,6 +145,24 @@ in
   ];
 
   programs.dconf.enable = true;*/
+  
+  # MPV default and stuff
+  xdg.mime = {
+    enable = true;
+    defaultApplications = {
+      "video/mp4" = "mpv.desktop";
+      "video/x-matroska" = "mpv.desktop";
+      "video/webm" = "mpv.desktop";
+      "video/avi" = "mpv.desktop";
+      "audio/mpeg" = "mpv.desktop";
+      "audio/flac" = "mpv.desktop";
+      "audio/ogg" = "mpv.desktop";
+      "image/jpeg" = "org.xfce.ristretto.desktop";
+      "image/png" = "org.xfce.ristretto.desktop";
+      "image/gif" = "org.xfce.ristretto.desktop";
+      "image/webp" = "org.xfce.ristretto.desktop";
+    };
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -293,10 +320,13 @@ in
   };
 
   # Ollama
-  services.ollama = {
+  /*services.ollama = {
     enable = true;
     package = pkgs.ollama-vulkan;
-  };
+    loadModels = [ "hf.co/gaston-parravicini/LFM2.5-8B-A1B-Uncensored-Gaston-GGUF:Q4_K_M"
+      "hf.co/Abiray/LFM2.5-2.6B-Heretic-Abliterated-GGUF:Q4_K_M"
+    ];
+  };*/
 
   # Install openrgb.
   services.hardware.openrgb = {
@@ -356,7 +386,6 @@ in
     comic-neue
     mangohud
     loupe
-    haruna
     kdePackages.kcalc
     nerd-fonts.droid-sans-mono
     qpwgraph
@@ -374,15 +403,19 @@ in
     tree
     ruby
     devenv
+    kdePackages.kleopatra
+    llama-cpp-vulkan
+    mpv
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-qt;
+  };
 
   # List services that you want to enable:
 
