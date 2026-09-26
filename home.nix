@@ -1,51 +1,11 @@
 { config, pkgs, inputs, ... }:
 
 {
-  imports = [
-    inputs.plasma-manager.homeModules.plasma-manager
-  ];
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "user";
   home.homeDirectory = "/home/user";
-
-  # Plasma customization
-  programs.plasma = {
-    enable = true;
-    workspace = {
-      wallpaper = "${pkgs.nixos-artwork.wallpapers.gear.kdeFilePath}";
-    };
-    kwin = {
-      effects = {
-        blur.enable = false;
-      };
-    };
-    shortcuts = {
-      "org.kde.konsole.desktop"."_launch" = "";
-      "foot.desktop"."_launch" = "Ctrl+Alt+T";
-    };
-    kscreenlocker.appearance.wallpaper = "${pkgs.nixos-artwork.wallpapers.gear.kdeFilePath}";
-    powerdevil = {
-      AC = {
-        autoSuspend = {
-	        action = "nothing";
-	        idleTimeout = null;
-        };
-        dimDisplay = {
-          enable = true;
-          idleTimeout = 300;
-        };
-        turnOffDisplay = {
-          idleTimeout = 600;
-          idleTimeoutWhenLocked = 60;
-        };
-        powerButtonAction = "showLogoutScreen";
-        whenLaptopLidClosed = "turnOffScreen";
-        inhibitLidActionWhenExternalMonitorConnected = false;
-      };
-    };
-  };
 
   programs.obs-studio = {
     enable = true;
@@ -65,13 +25,25 @@
       pride_month_disable = true;
     };
   };
+
+  /*programs.wofi = {
+    enable = true;
+    settings = {
+      width = 400;
+      height = 300;
+      location = "center";
+      show = "drun";
+      prompt = "Search...";
+      filter_title = true;
+    };
+  };*/
   
   programs.git = {
     enable = true;
     settings = {
       user = {
         name = "chk_it";
-	email = "a@a.com";
+	      email = "ezman2915@gmail.com";
       };
       credential.helper = [
         "store"
@@ -103,14 +75,26 @@
     #settings.main.initial-window-size-chars = "128x46";
   };*/
 
-  /*home.pointerCursor = {
+  home.pointerCursor = {
     enable = true;
     gtk.enable = true;
     x11.enable = true;
     package = pkgs.kdePackages.breeze;
-    name = "breeze_cursors";
+    name = "breeze-cursors";
     size = 24;
-  };*/
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Breeze-Dark";
+      package = pkgs.kdePackages.breeze; 
+    };
+    iconTheme = {
+      name = "breeze-dark";
+      package = pkgs.kdePackages.breeze-icons;
+    };
+  };
 
   /*dconf = {
     settings = {
@@ -135,6 +119,9 @@
     vesktop
     drawy
   ];
+
+  # Files
+  home.file.".config/niri/config.kdl".source = ./niri.kdl;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
